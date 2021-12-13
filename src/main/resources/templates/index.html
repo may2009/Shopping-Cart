@@ -6,6 +6,15 @@
       <link rel="stylesheet" type="text/css" th:href="@{/style.css}" />
       <th:block th:include="/_header"></th:block>
    </head>
+
+   <style>
+       .box {
+           width: 230px;
+           height: 155px;
+           margin-bottom: 5px;
+       }
+
+   </style>
    <body>
       
       <th:block th:include="/_menu"></th:block>
@@ -22,7 +31,7 @@
      
     <div class="carousel-item active">
      <!-- <video loop="" autoplay="" playsinline="" src="https://brand.assets.adidas.com/video/upload/q_auto,vc_auto/video/upload/global%20brand%20publishing/Running/Faster%20Than/running-ss20-faster-than-launch-hp-masthead-small-ub20-d.mp4" style=" width: 100%;" ></video>-->
-      <img src="">
+      <img src="https://vuntzmall.com/wp-content/uploads/2019/04/slider1.jpg">
       <div class="carousel-caption d-none d-md-block">
     <h1 style="font-size: 50px; font-weight: 900; margin-bottom: 140px; margin-right: 600px; color: #ffffff;">Shop <br>
 <p style="font-size: 1rem; color: #ffffff;">Iconic Boost. Outrageous energy return. Bold new colors.<br> Hello, Shop.</p>
@@ -94,121 +103,71 @@
     <!-- {{-- ======================= end of addias 2 ==================== --}} -->
 
 
+      <div class="container">
+          <div class="row">
+              <div class="col-md-12 col-sm-12">
+                  <div class="row">
+
+                      <div th:each="prodInfo : ${paginationProducts.list}">
+                          <div class="">
+                              <div class="display">
+                                  <img th:src="@{|/productImage?code=${prodInfo.code}|}" alt="..."
+                                       style="width:280px; height:320px; margin-bottom:5px; margin-right:2px;">
+                                  <div class="box">
+                                      <h6 class="h6_offer">Originals</h6>
+                                      <p style="font-size:13px;"><span th:utext="${prodInfo.name}"></span><br>
+                                          $<span th:utext="${prodInfo.price}"></span>
+                                      </p>
+                                      <h6 class="h6_offer">2 colors</h6>
+                                      <a th:href="@{|/buyProduct?code=${prodInfo.code}|}" class="btn btn-link" >Buy Now</a>
+                                  </div>
+                              </div>
+
+                              <!-- For Manager edit Product -->
+                              <th:block sec:authorize="hasAuthority('ROLE_MANAGER')">
+
+                                  <a style="color:red;"
+                                     th:href="@{|/admin/product?code=${prodInfo.code}|}">Edit Product</a>
+
+                              </th:block>
+                          </div>
+                      </div>
 
 
-<!-- ------------------------------Offer end---------------------------------- -->
-<section id="about">
-  <div class="section-content">
-    <div class="container">
 
-      <div class="col-md-6">
-        <div class="about-text">
-          <h3>About me</h3>
-          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-          proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
 
-        <h5>Follow me</h5>
-        <a href="" class="btn btn-sm btn-outline-light">Facebook</a>
-        <a href="" class="btn btn-sm btn-outline-light">Twitter</a>
-        <a href="" class="btn btn-sm btn-outline-light">Github</a>
+                      <br/>
 
-        </div>
-      </div> 
-    </div>
-  </div>
-</section>
+                      <!-- ------------------------------Offer end---------------------------------- -->
 
-<!-- ------------------------------About end---------------------------------- -->
-<section id="restaurants_bars">
-  <div class="section-content">
-    <div class="container">
-      <h2 class="h2_offer">RESTAURANTS & BARS</h2>
-      <hr>
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="card-columns">
-  <div class="card">
-    <img src="https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/178/2019/03/12021201/NovotelYangonMax-restaurants_barssession-royalpavilionchineserestaurant-photo1.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title that wraps to a new line</h5>
-      <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-    </div>
-  </div>
-  <div class="card p-3">
+                  </div>
 
-    <blockquote class="blockquote mb-0 card-body">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      <footer class="blockquote-footer">
-        <small class="text-muted">
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </small>
-      </footer>
-    </blockquote>
-  </div>
-  <div class="card">
-    <img src="https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/178/2019/03/11094953/NovotelYangonMax-restaurants_barssession-lecellier-photo1.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
 
-  <div class="card text-white text-center p-3" style="background: #000;">
-    <blockquote class="blockquote mb-0">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat.</p>
-      <footer class="blockquote-footer text-white">
-        <small>
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </small>
-      </footer>
-    </blockquote>
-  </div>
+              </div>
+          </div>
+          <br><br>
+          <!-- nav start  -->
+          <div class="row">
+              <div class="col-lg-6 offset-4">
+                  <div class="" th:if="${paginationProducts.totalPages > 1}">
+                      <th:block th:each="page : ${paginationProducts.navigationPages}">
 
-  <div class="card text-center">
-    <img src="https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/178/2019/03/12023336/barcodektvphoto1.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This card has a regular title and short paragraphy of text below it.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
+                          <a th:href="@{|/productList?page=${page}|}" th:if="${page != -1}"
+                             class="btn btn-dark" style="border-radius: 0%; margin:2px;" th:utext="${page}"></a>
 
-  <div class="card">
-    <img src="https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/178/2019/03/11095355/takumiyajapanesephoto1.jpg" class="card-img-top" alt="...">
-  </div>
+                          <span class="btn btn-dark" style="border-radius: 0%; margin:2px;" th:if="${page == -1}"> ... </span>
 
-  <div class="card p-3 text-right text-white" style="background: #000;">
-    <blockquote class="blockquote mb-0">
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer posuere erat a ante.</p>
-      <footer class="blockquote-footer">
-        <small class="text-muted">
-          Someone famous in <cite title="Source Title">Source Title</cite>
-        </small>
-      </footer>
-    </blockquote>
-  </div>
+                      </th:block>
+                  </div>
+              </div>
+          </div> <!-- nav end -->
+      </div><!-- container end -->
 
-  <div class="card">
-    <img src="https://d2e5ushqwiltxm.cloudfront.net/wp-content/uploads/sites/178/2019/05/20071244/In-room-dining2.jpg" class="card-img-top" alt="...">
-    <div class="card-body">
-      <h5 class="card-title">Card title</h5>
-      <p class="card-text">This is another card with title and supporting text below. This card has some additional content to make it slightly taller overall.</p>
-      <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-    </div>
-  </div>
-</div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-       
+
+
+
+
+
    </body>
 </html>
